@@ -4,10 +4,18 @@ import EventRowMixin from './EventRowMixin'
 import { eventLevels } from './utils/eventLevels'
 import range from 'lodash/range'
 
-let isSegmentInSlot = (seg, slot) => seg.left <= slot && seg.right >= slot
-let eventsInSlot = (segments, slot) =>
-  segments.filter(seg => isSegmentInSlot(seg, slot)).length
-
+let isSegmentInSlot = (seg, slot, x) => {
+  if (x) {
+    console.log(`Return ${seg.left <= slot && seg.right >= slot}`)
+  }
+  return seg.left <= slot && seg.right >= slot
+}
+let eventsInSlot = (segments, slot, x) => {
+  if (x) {
+    console.log(`Slot ${slot}`)
+  }
+  return segments.filter(seg => isSegmentInSlot(seg, slot, true && x)).length
+}
 class EventEndingRow extends React.Component {
   render() {
     let {
@@ -24,7 +32,7 @@ class EventEndingRow extends React.Component {
       let key = '_lvl_' + current
 
       let { event, left, right, span } =
-        rowSegments.filter(seg => isSegmentInSlot(seg, current))[0] || {} //eslint-disable-line
+        rowSegments.filter(seg => isSegmentInSlot(seg, current, false))[0] || {} //eslint-disable-line
 
       if (!event) {
         current++
@@ -32,7 +40,7 @@ class EventEndingRow extends React.Component {
       }
 
       let gap = Math.max(0, left - lastEnd)
-
+      console.log(`Span ${span}`)
       if (this.canRenderSlotEvent(left, span)) {
         let content = EventRowMixin.renderEvent(this.props, event)
 
@@ -67,7 +75,7 @@ class EventEndingRow extends React.Component {
     let { segments } = this.props
 
     return range(slot, slot + span).every(s => {
-      let count = eventsInSlot(segments, s)
+      let count = eventsInSlot(segments, s, false)
 
       return count === 1
     })
@@ -75,7 +83,7 @@ class EventEndingRow extends React.Component {
 
   renderShowMore(segments, slot) {
     let { localizer } = this.props
-    let count = eventsInSlot(segments, slot)
+    let count = eventsInSlot(segments, slot, true)
 
     return count ? (
       <a

@@ -164,6 +164,7 @@ class DateContentRow extends React.Component {
             {levels.map((segs, idx) => (
               <EventRow key={idx} segments={segs} {...eventRowProps} />
             ))}
+            {console.log(extra)}
             {!!extra.length && (
               <EventEndingRow
                 segments={extra}
