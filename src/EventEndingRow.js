@@ -6,7 +6,7 @@ import range from 'lodash/range'
 
 let isSegmentInSlot = (seg, slot, x) => {
   if (x) {
-    console.log(`Return ${seg.left <= slot && seg.right >= slot}`)
+    // console.log(`Return ${seg.left <= slot && seg.right >= slot}`)
   }
   return seg.left <= slot && seg.right >= slot
 }
@@ -35,12 +35,13 @@ class EventEndingRow extends React.Component {
         rowSegments.filter(seg => isSegmentInSlot(seg, current, false))[0] || {} //eslint-disable-line
 
       if (!event) {
+        console.log(rowSegments)
         current++
         continue
       }
 
       let gap = Math.max(0, left - lastEnd)
-      console.log(`Span ${span}`)
+      // console.log(`Span ${span}`)
       if (this.canRenderSlotEvent(left, span)) {
         let content = EventRowMixin.renderEvent(this.props, event)
 
