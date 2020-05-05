@@ -14,7 +14,6 @@ export default [
     start: new Date(2015, 3, 7),
     end: new Date(2015, 3, 10),
   },
-
   {
     id: 2,
     title: 'DTS STARTS',
@@ -158,5 +157,29 @@ export default [
     title: 'Go to the gym',
     start: new Date(2015, 3, 14, 18, 30, 0),
     end: new Date(2015, 3, 14, 20, 0, 0),
+  },
+  {
+    id: 24,
+    title: 'Bug Test 1',
+    start: new Date(2015, 3, 7),
+    end: new Date(2015, 3, 22),
+  },
+  {
+    id: 25,
+    title: 'Bug Test 2',
+    start: new Date(2015, 3, 14),
+    end: new Date(2015, 3, 19),
+  },
+  {
+    id: 26,
+    title: 'Bug Test 3',
+    start: new Date(2015, 3, 13),
+    end: new Date(2015, 3, 18),
+  },
+  {
+    id: 27,
+    title: 'Bug Test 4',
+    start: new Date(2015, 3, 22),
+    end: new Date(2015, 3, 27),
   },
 ]
